@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    // Check duplicate partNumber
+    
     boolean existsByPartNumber(String partNumber);
 
-    // Search by partName (case-insensitive)
+    
     List<Product> findByPartNameContainingIgnoreCase(String partName);
 
-    // Filter by category (case-insensitive)
+    
     List<Product> findByCategoryIgnoreCase(String category);
 
-    // Sort by price ascending
+    
     List<Product> findAllByOrderByPriceAsc();
 }

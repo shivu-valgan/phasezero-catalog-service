@@ -5,6 +5,8 @@ import com.phasezero.catalog_service.entity.Product;
 import com.phasezero.catalog_service.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,37 +18,42 @@ public class ProductController {
 
     private final ProductService productService;
 
-    // 1) Add New Product
-    @PostMapping("/")
+    
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Product addProduct(@Valid @RequestBody Product product) {
         return productService.addProduct(product);
     }
 
-    // 2) List All Products
-    @GetMapping("/")
+    
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    // 3) Search by Name
+    
     @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
     public List<Product> searchProducts(@RequestParam String name) {
         return productService.searchByName(name);
     }
 
-    // 4) Filter by Category
+    
     @GetMapping("/filter")
+    @ResponseStatus(HttpStatus.OK)
     public List<Product> filterByCategory(@RequestParam String category) {
         return productService.filterByCategory(category);
     }
 
-    // 5) Sort by Price
+    
     @GetMapping("/sort/price")
+    @ResponseStatus(HttpStatus.OK)
     public List<Product> sortByPrice() {
         return productService.sortByPrice();
     }
 
-    // 6) Total Inventory Value
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/inventory/value")
     public double inventoryValue() {
         return productService.getTotalInventoryValue();
