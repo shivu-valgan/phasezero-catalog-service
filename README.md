@@ -27,7 +27,7 @@ cd phasezero-catalog-service
 ```
 
 ### The server will run on: 
-http://localhost:8080
+http://localhost:1010
 
 ### Accessing the H2 Database Console
 ```bash
